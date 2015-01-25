@@ -82,34 +82,56 @@
 
 
 (defn my-map [f seq-1 seq-2]
-  (cond
-    (or (empty? seq-1) (empty? seq-2))
+  (if (or (empty? seq-1) (empty? seq-2))
       '()
-    :else
       (cons (f (first seq-1) (first seq-2))
             (my-map f (rest seq-1) (rest seq-2)))))
 
 
 (defn power [n k]
-  :-)
+  (cond (= k 1) n
+        (= k 0) 1
+        :else (* n (power n (dec k)))))
 
 (defn fib [n]
-  :-)
+  (if (or (= n 0) (= n 1))
+    n
+    (+ (fib (- n 1)) (fib (- n 2)))))
+
 
 (defn my-repeat [how-many-times what-to-repeat]
-  [:-])
+  (cond (<= how-many-times 0) []
+        (= how-many-times 1) [what-to-repeat]
+        :else (cons what-to-repeat (my-repeat (dec how-many-times) what-to-repeat))))
 
 (defn my-range [up-to]
-  [:-])
+  (if (<= up-to 0)
+    '()
+    (cons (dec up-to) (my-range (dec up-to)))))
+
 
 (defn tails [a-seq]
-  [:-])
+  (if (empty? a-seq)
+    ['()]
+    (cons a-seq (tails (rest a-seq)))))
 
 (defn inits [a-seq]
-  [:-])
+  (if (empty? a-seq)
+    ['()]
+    (cons a-seq (inits (reverse (rest (reverse a-seq)))))))
+
+(defn rotate [a-seq]
+  (seq (concat (rest a-seq) (list (first a-seq)))))
+
+(defn rotations-w-num [a-seq n]
+  (if (== n (count a-seq))
+    (list a-seq)
+    (cons a-seq (rotations-w-num (rotate a-seq) (inc n)))))
 
 (defn rotations [a-seq]
-  [:-])
+  (if (empty? a-seq)
+    '(())
+    (rotations-w-num a-seq 1)))
 
 (defn my-frequencies-helper [freqs a-seq]
   [:-])
