@@ -149,17 +149,24 @@
   (flatten (map (fn [x] (repeat (get a-map x) x)) (keys a-map))))
 
 
-(concat (repeat 5 :a) (repeat 2 :b))
-
-
 (defn my-take [n coll]
-  [:-])
+  (if (empty? coll)
+    coll
+    (if (= n 0)
+      []
+      (cons (first coll) (my-take (- n 1) (rest coll))))))
 
 (defn my-drop [n coll]
-  [:-])
+  (if (empty? coll)
+    coll
+    (if (= n 0)
+      coll
+      (my-drop (- n 1) (rest coll)))))
 
 (defn halve [a-seq]
   [:-])
+
+
 
 (defn seq-merge [a-seq b-seq]
   [:-])
