@@ -182,7 +182,14 @@
 
 
 (defn merge-sort [a-seq]
-  [:-])
+  (if (or (empty? a-seq) (= (count a-seq) 1))
+    a-seq
+    (let [[half1 half2] (halve a-seq)]
+      (seq-merge (merge-sort half1) (merge-sort half2)))))
+
+(merge-sort [7 5 2 7])
+
+
 
 (defn split-into-monotonics [a-seq]
   [:-])
