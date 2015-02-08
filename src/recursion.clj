@@ -134,10 +134,16 @@
     (rotations-w-num a-seq 1)))
 
 (defn my-frequencies-helper [freqs a-seq]
-  [:-])
+  (if (empty? a-seq)
+    freqs
+    (if (get freqs (first a-seq))
+      (my-frequencies-helper (conj freqs {(first a-seq) (+ 1 (get freqs (first a-seq)))}) (rest a-seq))
+      (my-frequencies-helper (conj freqs {(first a-seq) 1}) (rest a-seq)))))
+
 
 (defn my-frequencies [a-seq]
-  [:-])
+  (my-frequencies-helper {} a-seq))
+
 
 (defn un-frequencies [a-map]
   [:-])
