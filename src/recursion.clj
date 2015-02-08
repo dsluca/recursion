@@ -164,12 +164,22 @@
       (my-drop (- n 1) (rest coll)))))
 
 (defn halve [a-seq]
-  [:-])
+  (vector
+    (my-take (int (/ (count a-seq) 2)) a-seq)
+    (my-drop (int (/ (count a-seq) 2)) a-seq)))
 
 
+(defn my-merge [i a-seq]
+  (flatten (conj
+    (drop-while (fn [x] (> i x)) a-seq)
+    (list i)
+    (take-while (fn [x] (> i x)) a-seq))))
 
 (defn seq-merge [a-seq b-seq]
-  [:-])
+  (if (empty? a-seq)
+    b-seq
+    (seq-merge (rest a-seq) (my-merge (first a-seq) b-seq))))
+
 
 (defn merge-sort [a-seq]
   [:-])
