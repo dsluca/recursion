@@ -146,7 +146,11 @@
 
 
 (defn un-frequencies [a-map]
-  [:-])
+  (flatten (map (fn [x] (repeat (get a-map x) x)) (keys a-map))))
+
+
+(concat (repeat 5 :a) (repeat 2 :b))
+
 
 (defn my-take [n coll]
   [:-])
